@@ -2,17 +2,20 @@ import requests
 from time import sleep
 from os import system
 
-#çerezlerin değerlerini giriniz
-reqs = { 
-    "ct0":"",
-    "auth_token":""
-    }
+#cerezlerin degerlerini giriniz
+ct0 = ""
+auth_token = ""
 
+if ct0 == "" or auth_token == "":
+    system("cls||clear")
+    print("Cerezleri giriniz!")
+    sleep(4)
+    exit()
 
 def follow(userid):
     cookie =  {
-        "ct0":reqs["ct0"],
-        "auth_token":reqs["auth_token"]
+        "ct0": ct0,
+        "auth_token": auth_token
         }
     
     data = {
@@ -30,7 +33,7 @@ def follow(userid):
         }
     
     header = {
-        "X-Csrf-Token": reqs["ct0"],
+        "X-Csrf-Token": ct0,
         "Authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
         }
     
@@ -44,8 +47,8 @@ def follow(userid):
 
 def unfollow(userid):
     cookie =  {
-        "ct0":reqs["ct0"],
-        "auth_token":reqs["auth_token"]
+        "ct0": ct0,
+        "auth_token": auth_token
         }
     
     data = {
@@ -63,7 +66,7 @@ def unfollow(userid):
         }
     
     header = {
-        "X-Csrf-Token": reqs["ct0"],
+        "X-Csrf-Token": ct0,
         "Authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
         }
     
