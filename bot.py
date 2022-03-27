@@ -11,13 +11,18 @@ if ct0 == "" or auth_token == "":
     print("Cerezleri giriniz!")
     sleep(4)
     exit()
-
-def follow(userid):
-    cookie =  {
+    
+cookie =  {
         "ct0": ct0,
         "auth_token": auth_token
         }
     
+header = {
+        "X-Csrf-Token": ct0,
+        "Authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
+        }
+
+def follow(userid):
     data = {
         "include_profile_interstitial_type": "1",
         "include_blocking": "1",
@@ -30,11 +35,6 @@ def follow(userid):
         "include_ext_has_nft_avatar": "1",
         "skip_status": "1",
         "id": userid
-        }
-    
-    header = {
-        "X-Csrf-Token": ct0,
-        "Authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
         }
     
     istek = requests.post("https://twitter.com/i/api/1.1/friendships/create.json",  cookies=cookie, data=data, headers=header)
@@ -46,11 +46,6 @@ def follow(userid):
         return(userid+" --> Hata!")
 
 def unfollow(userid):
-    cookie =  {
-        "ct0": ct0,
-        "auth_token": auth_token
-        }
-    
     data = {
         "include_profile_interstitial_type": "1",
         "include_blocking": "1",
@@ -63,11 +58,6 @@ def unfollow(userid):
         "include_ext_has_nft_avatar": "1",
         "skip_status": "1",
         "id": userid
-        }
-    
-    header = {
-        "X-Csrf-Token": ct0,
-        "Authorization": "Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA",
         }
     
     istek = requests.post("https://twitter.com/i/api/1.1/friendships/destroy.json",  cookies=cookie, data=data, headers=header)
